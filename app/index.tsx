@@ -1,17 +1,15 @@
 import { View, Text, TouchableOpacity } from 'react-native';
 import { useRouter } from 'expo-router';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import "../global.css"
 
 export default function WelcomeScreen() {
     const router = useRouter();
 
     return (
-        <SafeAreaView className="flex-1 bg-white items-center justify-center p-5">
+        <View className="flex-1 bg-white items-center justify-center p-5">
             <View className="items-center mb-10">
                 <Text className="text-3xl font-bold text-blue-600 mb-2">Paper Finder LK</Text>
                 <Text className="text-gray-500 text-center">
-                    O/L සහ A/L පේපර්ස් පහසුවෙන් සොයාගන්න.
                 </Text>
             </View>
 
@@ -21,6 +19,6 @@ export default function WelcomeScreen() {
             >
                 <Text className="text-white font-bold text-lg">Start Now</Text>
             </TouchableOpacity>
-        </SafeAreaView>
+        </View>
     );
 }

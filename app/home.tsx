@@ -1,41 +1,38 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Linking, ScrollView, Alert } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function HomeScreen() {
-    // 1. User Inputs තියාගන්න State හදාගමු
     const [exam, setExam] = useState('A/L'); // Default A/L
     const [year, setYear] = useState('');
     const [subject, setSubject] = useState('');
     const [medium, setMedium] = useState('Sinhala');
 
-    // 2. Search කරන Logic එක
+    // 2. Search Logic
     const handleSearch = () => {
         if (!year || !subject) {
             Alert.alert("අවධානයයි", "කරුණාකර වර්ෂය සහ විෂය ඇතුලත් කරන්න.");
             return;
         }
 
-        // Google Search Query එක හදන විදිය
+        // Google Search Query
         // Query Example: "GCE AL Physics 2023 Sinhala Medium Past Paper"
         const query = `GCE ${exam} ${subject} ${year} ${medium} medium past paper download`;
 
-        // URL එක encode කරනවා (space වෙනුවට %20 වගේ දේවල් වැටෙන්න)
+        // URL encode
         const googleUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
 
-        // Browser එකේ Link එක open කිරීම
+        // Open Link in Browser
         Linking.openURL(googleUrl).catch((err) =>
             Alert.alert("Error", "Browser එක open කිරීමට නොහැක.")
         );
     };
 
     return (
-        <SafeAreaView className="flex-1 bg-gray-50">
+        <View className="flex-1 bg-gray-50">
             <ScrollView contentContainerStyle={{ padding: 20 }}>
 
                 <Text className="text-2xl font-bold text-gray-800 mb-6">විස්තර තෝරන්න</Text>
 
-                {/* Exam Selection Buttons */}
                 <Text className="text-gray-600 mb-2 font-semibold">විභාගය (Exam)</Text>
                 <View className="flex-row mb-4 space-x-4">
                     {['O/L', 'A/L'].map((item) => (
@@ -101,6 +98,6 @@ export default function HomeScreen() {
                 </TouchableOpacity>
 
             </ScrollView>
-        </SafeAreaView>
+        </View>
     );
 }
